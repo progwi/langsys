@@ -33,12 +33,3 @@ foreach ($initialUsers as $user) {
 foreach ($users as $user) {
 	echo $user->getPerson() . PHP_EOL;
 }
-
-//$usuario2 = new User('mscheffer', 'mscheffer@gmail.com', '123456');
-//$usuario2->addRole($role1);
-//$usuario2->addRole($roles[2]);
-//$usuario2->addRole($roles[3]);
-
-//$maru = new Person('Maru', 'Scheffer', $usuario2);
-
-//echo 'Created user ' . $maru . "\n";
