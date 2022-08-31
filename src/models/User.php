@@ -7,6 +7,7 @@ class User
 	private $name;
 	private $email;
 	private $password;
+	private $person;
 
 	private $roles = [];
 
@@ -51,6 +52,16 @@ class User
 	public function addRole(Role $role)
 	{
 		$this->roles[] = $role;
+	}
+
+	public function setPerson(Person $person)
+	{
+		$this->person = $person;
+	}
+
+	public function getPerson()
+	{
+		return $this->person;
 	}
 
 	public function maxRole()

@@ -1,5 +1,6 @@
 <?php
-class Person {
+class Person
+{
 	private static $nextId = 1;
 	private $id;
 	private $firstName;
@@ -51,6 +52,6 @@ class Person {
 
 	public function __toString()
 	{
-		return $this->firstName . ' ' . $this->lastName . ' who is ' . $this->user->maxRole() ;
+		return $this->firstName . ' ' . $this->lastName . ' who is ' . $this->user->maxRole();
 	}
 }
