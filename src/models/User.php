@@ -1,19 +1,54 @@
 <?php
 
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="user")
+ */
 class User
 {
-	private static $nextId = 1;
+	/**
+	 * @ORM\Id
+	 * @ORM\Column(type="integer")
+	 * @ORM\GeneratedValue
+	 * @var int
+	 */
 	private $id;
+
+	/**
+	 * @ORM\Column(type="string")
+	 * @var string
+	 */
 	private $name;
+
+	/**
+	 * @ORM\Column(type="string")
+	 * @var string
+	 */
 	private $email;
+
+	/**
+	 * @ORM\Column(type="string")
+	 * @var string
+	 */
 	private $password;
+
+	/**
+	 * @ORM\OneToOne(targetEntity="Person")
+	 * @var Person
+	 */
 	private $person;
 
-	private $roles = [];
+	/**
+	 * @ORM\ManyToMany(targetEntity="Role")
+	 * @var Role[] An ArrayCollection of Role objects.
+	 */
+	private $roles;
 
 	public function __construct($name, $email, $password)
 	{
-		$this->id = $this::$nextId++;
 		$this->name = $name;
 		$this->email = $email;
 		$this->password = $password;
@@ -57,6 +92,7 @@ class User
 	public function setPerson(Person $person)
 	{
 		$this->person = $person;
+		$person->setUser($this);
 	}
 
 	public function getPerson()
@@ -64,6 +100,7 @@ class User
 		return $this->person;
 	}
 
+	/*
 	public function maxRole()
 	{
 		$max = 0;
@@ -76,4 +113,5 @@ class User
 		}
 		return $maxRole;
 	}
+	*/
 }

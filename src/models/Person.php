@@ -1,18 +1,51 @@
 <?php
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="person")
+ */
 class Person
 {
-	private static $nextId = 1;
+	/**
+	 * @ORM\Id
+	 * @ORM\Column(type="integer")
+	 * @ORM\GeneratedValue
+	 */
 	private $id;
+
+	/**
+	 * @ORM\Column(type="string")
+	 */
 	private $firstName;
+
+	/**
+	 * @ORM\Column(type="string")
+	 */
 	private $lastName;
+	
+	/**
+	 * @ORM\Column(type="float")
+	 */
+	private $height;
+
+	/**
+	 * @ORM\Column(type="datetime")
+	 */
+	private $birthDate;
+
+	/**
+	 * @ORM\OneToOne(targetEntity="User")
+	 */
 	private $user;
 
-	public function __construct($firstName, $lastName, User $user)
+	public function __construct($firstName, $lastName)
 	{
-		$this->id = $this::$nextId++;
 		$this->firstName = $firstName;
 		$this->lastName = $lastName;
-		$this->user = $user;
+		$this->height = 1.80;
+		$this->birthDate = new DateTime();
 	}
 
 	public function getId()
@@ -50,8 +83,10 @@ class Person
 		$this->user = $user;
 	}
 
+	/*
 	public function __toString()
 	{
 		return $this->firstName . ' ' . $this->lastName . ' who is ' . $this->user->maxRole();
 	}
+	*/
 }
